@@ -10,6 +10,27 @@ const outputPath = path.resolve(__dirname, "output", "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+const team = [];
+
+class teamBuilder {
+    confirmManager() {
+        inquirer
+            .prompt([
+                {
+                    type: "confirm"
+                    , message: "Are you the team manager?"
+                    , name: "managerConfirm"
+                }
+            ]).then(res => {
+                if (res.managerConfirm) {
+                    this.createManager()
+                } else {
+                    console.log("You need to be a manager to create a team!")
+                    process.exit(0);
+                }
+            })
+    };
+
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
